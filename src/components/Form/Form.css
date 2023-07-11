@@ -1,0 +1,145 @@
+.form {
+    max-width: 1280px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form__header {
+    width: 396px;
+    margin-top: 70px;
+}
+
+.form__header_title {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 40px 0;
+}
+
+.form__container {
+    width: 396px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form__container-login {
+    margin-bottom: 221px;
+}
+
+.form__container-register {
+    margin-bottom: 134px;
+}
+
+.form__btn-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 0;
+    width: 396px;
+    justify-content: center;
+}
+
+.form-btn__redirect {
+    width: 100%;
+}
+
+.form-btn {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 3px;
+    background-color: #3456F3;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.form-btn:hover {
+    background-color: #EE3465;
+}
+
+.form__redirect {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+}
+
+.form__redirect-link {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #3456F3;
+    margin-left: 6px;
+}
+
+.form__label {
+    font-size: 10px;
+    font-weight: 400;
+    color: #A0A0A0;
+}
+
+.form__input {
+    border: none;
+    outline: none;
+    padding: 5px 0 10px 0;
+    border-bottom: 1px solid #E8E8E8;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #000;
+    background-color: #FAFAFA;
+}
+
+.form__input:last-of-type {
+    margin: 0;
+}
+
+@media screen and (max-width: 1023px) {
+    .form__header {
+        margin-top: 232px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .form__header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 56px;
+        width: 260px;
+    }
+
+    .form__header_title {
+        margin: 50px 0 80px 0;
+    }
+
+    .form__container {
+        width: 260px;
+    }
+
+    .form__container-login {
+        margin-bottom: 309px;
+    }
+
+    .form__container-register {
+        margin-bottom: 240px;
+    }
+
+    .form__btn-container {
+        gap: 14px 0;
+        width: 260px;
+    }
+
+    .form-btn {
+        font-size: 12px;
+    }
+
+    .form__redirect {
+        font-size: 12px;
+    }
+
+    .form__redirect-link {
+        font-size: 12px;
+        margin-left: 6px;
+    }
+}
