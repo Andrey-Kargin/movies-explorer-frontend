@@ -26,15 +26,17 @@ function Register() {
         setFocused(true)
     }
 
-    function handleRegisterSubmit() {
-        navigate("/signin");
+    function handleSubmit(e) {
+        e.preventDefault()
+
+        navigate("/movies");
     }
 
     return (
         <main className="register">
             <Form
                 isLogin={false}
-                onSubmit={handleRegisterSubmit}>
+                onSubmit={handleSubmit}>
                 <label className="form__label">Имя</label>
                 <input 
                     className="form__input"

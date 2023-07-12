@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Login() {
     const navigate = useNavigate();
 
-    function handleLoginSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault()
         navigate("/movies");
     }
@@ -32,7 +32,7 @@ function Login() {
         <main className="login">
             <Form
             isLogin={true}
-            onSubmit={handleLoginSubmit}
+            onSubmit={handleSubmit}
             >
                 <label className="form__label">Email</label>
                 <input 

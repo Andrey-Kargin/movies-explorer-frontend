@@ -33,3 +33,7 @@
 .edit__btn:hover {
     background-color: #FF004D;
 }
+
+.edit_error {
+    opacity: 0;
+}
