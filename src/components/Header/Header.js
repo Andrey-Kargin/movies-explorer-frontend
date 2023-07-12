@@ -8,7 +8,7 @@ function Header() {
 
     return (
         <>
-            {pathname === "/" || pathname === "/movies" || pathname === "/saved-movies" || pathname === "/profile" ?
+            {pathname === "/" || pathname === "/movies" || pathname === "/saved-movies" || pathname === "/profile" || pathname === "/edit" ?
             <header className="header">
                 <div className={`header__wrapper header__wrapper_${
                     pathname === "/" ? 'about-project' : "main"
@@ -19,12 +19,12 @@ function Header() {
                         <Route path="/" element={[
                             <ul className="header__menu-list">
                                 <li>
-                                    <NavLink to="/signup" className="header__link header__link_register">
+                                    <NavLink to="/signup" className="header__link header__link_text-btn">
                                         Регистрация
                                     </NavLink>                        
                                 </li>
                                 <li>
-                                    <NavLink to="/signin" className="header__link header__link_login">
+                                    <NavLink to="/signin" className="header__link header__link_main-btn">
                                         Войти
                                     </NavLink>                        
                                 </li>
@@ -33,6 +33,7 @@ function Header() {
                         <Route path="/movies" element={<Navigation />} />
                         <Route path="/saved-movies" element={<Navigation />} />
                         <Route path="/profile" element={<Navigation />} />
+                        <Route path="/edit" element={<Navigation />} />
                     </Routes>
                 </div>
             </header>

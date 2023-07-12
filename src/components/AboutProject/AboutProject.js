@@ -21,22 +21,22 @@ function AboutProject() {
                 </div>
             </div>
             <div className="about-project__time-bar">
-                <div className="about-project__stage about-project__stage_first">
-                    <p className="about-project__stage-title">
+                <ul className="about-project__stage about-project__stage_backend">
+                    <li className="about-project__stage-title">
                         1 неделя
-                    </p>
-                    <p className="about-project__stage-subtitle">
+                    </li>
+                    <li className="about-project__stage-subtitle">
                         Back-end
-                    </p>
-                </div>
-                <div className="about-project__stage about-project__stage_second">
-                    <p className="about-project__stage-title about-project__stage-title_second">
+                    </li>
+                </ul>
+                <ul className="about-project__stage about-project__stage_frontend">
+                    <li className="about-project__stage-title about-project__stage-title_frontend">
                         4 недели
-                    </p>
-                    <p className="about-project__stage-subtitle">
+                    </li>
+                    <li className="about-project__stage-subtitle">
                         Front-end
-                    </p>
-                </div>
+                    </li>
+                </ul>
             </div>
         </section>
     )

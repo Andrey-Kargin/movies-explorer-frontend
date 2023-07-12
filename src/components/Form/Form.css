@@ -1,17 +1,18 @@
 .form {
-    max-width: 1280px;
-    margin: auto;
+    width: 100%;
     display: flex;
+    box-sizing: border-box;
     flex-direction: column;
+    min-height: 100vh;
     align-items: center;
+    padding: 10vh 0;
 }
 
 .form__header {
     width: 396px;
-    margin-top: 70px;
 }
 
-.form__header_title {
+.form__title {
     font-size: 24px;
     font-weight: 500;
     margin: 40px 0;
@@ -21,14 +22,8 @@
     width: 396px;
     display: flex;
     flex-direction: column;
-}
-
-.form__container-login {
-    margin-bottom: 221px;
-}
-
-.form__container-register {
-    margin-bottom: 134px;
+    flex: 1;
+    margin-bottom: 40px;
 }
 
 .form__btn-container {
@@ -37,13 +32,13 @@
     gap: 16px 0;
     width: 396px;
     justify-content: center;
-}
-
-.form-btn__redirect {
-    width: 100%;
+    flex-shrink: 0;
 }
 
 .form-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 45px;
     border: none;
@@ -53,6 +48,7 @@
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .form-btn:hover {
@@ -90,39 +86,46 @@
     background-color: #FAFAFA;
 }
 
+.form__input:focus {
+    box-shadow: 0 0 3px #A0A0A0 inset;
+    outline: none;
+}
+
 .form__input:last-of-type {
     margin: 0;
 }
 
+.form__input-error {
+    font-size: 10px;
+    font-weight: 400;
+    color: #EE3465;
+    margin-top: 6px;
+}
+
 @media screen and (max-width: 1023px) {
-    .form__header {
-        margin-top: 232px;
+    .form {
+        padding: 23vh 0;
     }
 }
 
 @media screen and (max-width: 767px) {
+    .form {
+        padding: 56px 0 30px 0;
+    }
+
     .form__header {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 56px;
         width: 260px;
     }
 
-    .form__header_title {
+    .form__title {
         margin: 50px 0 80px 0;
     }
 
     .form__container {
         width: 260px;
-    }
-
-    .form__container-login {
-        margin-bottom: 309px;
-    }
-
-    .form__container-register {
-        margin-bottom: 240px;
     }
 
     .form__btn-container {

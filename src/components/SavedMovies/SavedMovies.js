@@ -13,13 +13,13 @@ function SavedMovies() {
     }, [])
 
     return (
-        <section className="saved-movies">
+        <main className="saved-movies">
             <SearchForm />
             <MoviesCardList
             isSave={false}
             cardList={savedCards}/>
             <div className="saved-movies__gap" />
-        </section>
+        </main>
     )
 }
 

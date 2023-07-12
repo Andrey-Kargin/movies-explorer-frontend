@@ -22,6 +22,7 @@
 
 .header__menu-list {
     display: flex;
+    align-items: center;
     gap: 30px;
     list-style: none;
     margin: 0;
@@ -29,6 +30,7 @@
 }
 
 .header__link {
+    display: block;
     font-size: 12px;
     font-weight: 500;
     line-height: 16px;
@@ -36,18 +38,18 @@
     color: #000;
 }
 
-.header__link_login {
+.header__link_main-btn {
     color: #fff;
     padding: 8px 20px;
     background-color: #3456F3;
     border-radius: 3px;
 }
 
-.header__link_login:hover {
+.header__link_main-btn:hover {
     background-color: #EE3465;
 }
 
-.header__link_register:hover {
+.header__link_text-btn:hover {
     color: #3456F3;
 }
 
@@ -63,11 +65,16 @@
         padding: 18px 14px;
     }
 
-    .header__link {
-        font-size: 10px;
+    .header__menu-list {
+        gap: 14px;
     }
 
-    .header__link_login {
+    .header__link {
+        font-size: 10px;
+        line-height: 16px;
+    }
+
+    .header__link_main-btn {
         padding: 5px 12px;
     }
 }

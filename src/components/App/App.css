@@ -7,7 +7,5 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     overflow: -moz-scrollbars-vertical;
-    overflow-y: scroll;
     position: relative;
-    height: 100vh;
 }

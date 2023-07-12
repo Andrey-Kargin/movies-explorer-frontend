@@ -13,12 +13,12 @@ function Movies(props) {
     }, [])
 
     return (
-        <section className="movies">
+        <main className="movies">
             <SearchForm />
             <MoviesCardList 
             cardList={cards}
             isSave={true}/>
-        </section>
+        </main>
     )
 }
 

@@ -11,7 +11,7 @@ function Navigation() {
       };
 
     return (
-        <div className="navigation">
+        <nav className="navigation">
             <div onClick={handleClick} className={isActive ? "navigation__burger navigation__burger_opened" : "navigation__burger"}>
                 <span>
                 </span>
@@ -34,13 +34,13 @@ function Navigation() {
                 </li>
                 <li>
                     <NavLink onClick={handleClick} to="/profile" className="navigation__link navigation__profile-link">
-                        <img src={profileIcon} className="navigation__profile-link-img" alt=""/>
+                        <img src={profileIcon} className="navigation__profile-link-img" alt="Иконка профиля"/>
                         Аккаунт
                     </NavLink>
                 </li>
             </ul>
             <div className={isActive ? "navigation__overlay navigation__overlay_active" : 'navigation__overlay'}/>
-        </div>
+        </nav>
     )
 }
 

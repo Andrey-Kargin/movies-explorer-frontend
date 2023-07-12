@@ -4,8 +4,8 @@ import logo from "../../images/logo.svg"
 
 function Logo() {
     return (
-        <Link to="/">
-            <img src={logo} className="header__logo" alt="Логотип" />
+        <Link className="header__logo" to="/">
+            <img src={logo} alt="Логотип" />
         </Link>
     )
 }

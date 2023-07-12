@@ -11,7 +11,6 @@
     gap: 30px;
     list-style: none;
     margin: 0;
-    padding: 3px 0 0 0;
 }
 
 .navigation__list li:nth-of-type(1) {
@@ -114,7 +113,7 @@
         position: fixed;
         flex-direction: column;
         top: 0px;
-        right: -520px;
+        right: -100vw;
         gap: 28px;
         width: 520px;
         padding-top: 159px;
@@ -140,7 +139,7 @@
     }
 
     .navigation__profile-link {
-        margin-top: 601px;
+        margin-top: 59vh;
         font-size: 14px;
     }
 
@@ -193,7 +192,8 @@
     .navigation__list {
         gap: 24px;
         width: 100vw;
-        padding-top: 159px;
+        padding-top: 144px;
+        right: -120vw;
     }
 
     .active {
@@ -202,6 +202,6 @@
     }
 
     .navigation__profile-link {
-        margin-top: 444px;
+        margin-top: 55vh;
     }
 }
