@@ -64,6 +64,10 @@
     .portfolio__link-item {
         padding-bottom: 19px;
     }
+
+    .portfolio__link-text {
+        font-size: 28px;
+    }
 }
 
 @media screen and (max-width: 767px) {

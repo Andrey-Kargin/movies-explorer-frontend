@@ -23,12 +23,12 @@ function Navigation() {
                     </NavLink>                        
                 </li>
                 <li>
-                    <NavLink onClick={handleClick} to="/movies" className={({ isActive }) => (isActive ? 'navigation__link_active' : "navigation__link")}>
+                    <NavLink onClick={handleClick} to="/movies" className={({ isActive }) => (isActive ? 'navigation__link navigation__link_active' : "navigation__link")}>
                         Фильмы
                     </NavLink>                        
                 </li>
                 <li>
-                    <NavLink onClick={handleClick} to="/saved-movies" className={({ isActive }) => (isActive ? 'navigation__link_active' : "navigation__link")}>
+                    <NavLink onClick={handleClick} to="/saved-movies" className={({ isActive }) => (isActive ? 'navigation__link navigation__link_active' : "navigation__link")}>
                         Сохранённые фильмы
                     </NavLink>
                 </li>

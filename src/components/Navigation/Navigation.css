@@ -8,9 +8,10 @@
 .navigation__list {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 20px;
     list-style: none;
     margin: 0;
+    padding: 0;
 }
 
 .navigation__list li:nth-of-type(1) {
@@ -18,7 +19,7 @@
 }
 
 .navigation__link {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 18px;
     text-decoration: none;
@@ -30,8 +31,7 @@
 }
 
 .navigation__link_active {
-    font-size: 12px;
-    line-height: 18px;
+    font-size: 14px;
     text-decoration: none;
     color: #000;
     font-weight: 500;
@@ -47,6 +47,7 @@
     height: 32px;
     border: 1px solid #AAAAAA;
     border-radius: 50px;
+    margin-left: 30px;
 }
 
 .navigation__profile-link:hover {
@@ -95,6 +96,10 @@
         bottom: 0;
     }
 
+    .navigation__burger_opened {
+        width: 22px;
+    }
+
     .navigation__burger_opened span {
         transform: scale(0);
     }
@@ -119,6 +124,7 @@
         padding-top: 159px;
         z-index: 2;
         height: 100vh;
+        line-height: 22px;
         background-color: #FAFAFA;
         transition: all 0.3s ease
     }
@@ -133,7 +139,6 @@
     }
 
     .navigation__link_active {
-        font-size: 18px;
         padding-bottom: 4px;
         border-bottom: 2px solid #000;
     }

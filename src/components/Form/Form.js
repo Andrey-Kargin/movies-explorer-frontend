@@ -1,8 +1,9 @@
 import Logo from "../Logo/Logo"
+import { React } from "react"
 import { Link } from "react-router-dom"
 
-function Form({ isLogin, children, onSubmit}) {
 
+function Form({ isLogin, children, onSubmit}) {
     return (
         <section className="form">
             <div className="form__header">
@@ -12,7 +13,7 @@ function Form({ isLogin, children, onSubmit}) {
                     : <h1 className="form__title">Добро пожаловать!</h1>
                 }
             </div>
-            <form id="form" className="form__container" onSubmit={onSubmit}>
+            <form id="form" className="form__container" onSubmit={onSubmit} noValidate>
                 {children}
             </form>
             <div className="form__btn-container">
