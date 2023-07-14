@@ -1,23 +1,37 @@
 import { useState, useEffect } from "react";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import { getCards } from "../../utils/MoviesApi";
+import { filterDuration } from '../../utils/utils';
 
-
-import { cardList } from '../../utils/constants.js';
-
-function Movies(props) {
+function Movies({onCardDelete, handleLikeClick, savedMovies}) {
     const [ cards, setCards ] = useState([]);
+    const [isShortMovies, setIsShortMovies] = useState(false);
+
+    function handleShortMovies() {
+        setIsShortMovies(!isShortMovies);
+      }
 
     useEffect(() => {
-            setCards(cardList);
-    }, [])
+        const getInfo = async () => {
+          const res = await getCards();
+          setCards(isShortMovies ? filterDuration(res) : res);
+          console.log(filterDuration(res))
+        };
+        console.log(isShortMovies)
+        getInfo();
+      
+      }, [isShortMovies]);
 
     return (
         <main className="movies">
-            <SearchForm />
+            <SearchForm onFilter={handleShortMovies} isShortMovies={isShortMovies} />
             <MoviesCardList 
             cardList={cards}
-            isSave={true}/>
+            onCardDelete={onCardDelete}
+            handleLikeClick={handleLikeClick}
+            savedMovies={savedMovies}
+            isSaved={false}/>
         </main>
     )
 }
