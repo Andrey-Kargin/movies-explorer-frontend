@@ -1,35 +1,29 @@
 import Form from "../Form/Form"
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import useForm from "../../hooks/useForm";
 
-function Register() {
+function Register({onRegister}) {
 
-    const navigate = useNavigate();
+    const { enteredValues, handleChange} = useForm();
 
     const [focused, setFocused] = useState(false)
    
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
 
     const nameError = "Имя должно быть длиной не менее 2 символов"
     const emailError = "Введите корректный email"
     const passwordError = "Что-то пошло не так..."
 
-    const handleChange = (e) => {
-        setName( {...name, [e.target.name]: e.target.value})
-        setEmail( {...email, [e.target.email]: e.target.value})
-        setPassword( {...password, [e.target.password]: e.target.value})
-    }
-    
     const handleFocus = (e) => {
         setFocused(true)
     }
 
     function handleSubmit(e) {
         e.preventDefault()
-
-        navigate("/movies");
+        onRegister({
+            name: enteredValues.name,
+            email: enteredValues.email,
+            password: enteredValues.password,
+          });
     }
 
     return (
@@ -41,9 +35,12 @@ function Register() {
                 <input 
                     className="form__input"
                     placeholder="Ваше имя"
+                    type="text"
+                    name="name"
                     required
                     minLength={2}
                     maxLength={40}
+                    value={enteredValues.name || ''}
                     onChange={handleChange}
                     onBlur={handleFocus}
                     focused={focused.toString()}
@@ -53,8 +50,10 @@ function Register() {
                 <input 
                     className="form__input"
                     type="email"
+                    name="email"
                     placeholder="Ваш e-mail"
                     required
+                    value={enteredValues.email || ''}
                     onChange={handleChange}
                     onBlur={handleFocus}
                     focused={focused.toString()}
@@ -64,10 +63,12 @@ function Register() {
                 <input 
                     className="form__input"
                     type="password"
+                    name="password"
                     placeholder="Ваш пароль"
                     required
                     minLength="6"
                     maxLength="40"
+                    value={enteredValues.password || ''}
                     onChange={handleChange}
                     onBlur={handleFocus}
                     focused={focused.toString()}

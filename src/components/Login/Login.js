@@ -1,27 +1,25 @@
 import { useState } from "react";
 import Form from "../Form/Form"
-import { useNavigate } from "react-router-dom";
+import useForm from '../../hooks/useForm';
 
 
-function Login() {
-    const navigate = useNavigate();
+function Login({onLogin}) {
 
-    function handleSubmit(e) {
-        e.preventDefault()
-        navigate("/movies");
-    }
+    const { enteredValues, handleChange} = useForm();
 
     const [focused, setFocused] = useState(false)
        
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
     const emailError = "Введите корректный email"
     const passwordError = "Что-то пошло не так..."
 
-    const handleChange = (e) => {
-        setEmail( {...email, [e.target.email]: e.target.value})
-        setPassword( {...password, [e.target.password]: e.target.value})
+
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        onLogin({
+            email: enteredValues.email,
+            password: enteredValues.password,
+          });
     }
     
     const handleFocus = (e) => {
@@ -43,6 +41,7 @@ function Login() {
                     minLength="2"
                     maxLength="40"
                     required
+                    value={enteredValues.email || ''}
                     onChange={handleChange}
                     onBlur={handleFocus}
                     focused={focused.toString()}
@@ -57,6 +56,7 @@ function Login() {
                     minLength="6"
                     maxLength="40"
                     required
+                    value={enteredValues.password || ''}
                     onChange={handleChange}
                     onBlur={handleFocus}
                     focused={focused.toString()}
