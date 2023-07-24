@@ -30,10 +30,15 @@
     margin: 0;
 }
 
-.profile__text {
+.profile__input {
     font-size: 11px;
     font-weight: 400;
-    margin: 0;
+    border: none;
+    width: fit-content;
+    height: fit-content;
+    text-align: end;
+    background-color: transparent;
+    padding: 0;
 }
 
 .profile__email {
@@ -49,7 +54,16 @@
     font-weight: 400;
     color: #000;
     text-decoration: none;
+    border: none;
+    background-color: transparent;
     margin: 0;
+}
+
+.profile__link_inactive {
+    pointer-events: none;
+    background: #ffffff;
+    color: #000000;
+    opacity: 0.2;
 }
 
 .profile__link:hover {
@@ -64,6 +78,21 @@
 
 .profile__link_signout:hover {
     color: #3456F3;
+}
+
+.profile__error {
+    font-size: 11px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+.profile__error_success {
+    color: #2BE080;
+}
+
+.profile__error_unsuccess {
+    color: #FF004C;
 }
 
 @media screen and (max-width: 1023px) {

@@ -52,6 +52,7 @@ function Register({onRegister}) {
                     type="email"
                     name="email"
                     placeholder="Ваш e-mail"
+                    pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                     required
                     value={enteredValues.email || ''}
                     onChange={handleChange}

@@ -7,11 +7,11 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import Edit from '../Edit/Edit';
 import NotFoundError from '../NotFoundError/NotFoundError';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { useState, useEffect } from 'react';
 
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 
 import CurrentUserContext from '../../context/CurrentUserContext';
 
@@ -23,8 +23,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(true);
+  const [ responseError, setResponseError ] = useState(null);
+  const [ responseSuccess, setResponseSuccess ] = useState(null);
 
   const navigate = useNavigate();
 
@@ -79,14 +79,12 @@ function App() {
         handleAuthorize({ email, password });
       })
       .catch((err) => {
-        setIsSuccess(false);
         console.log(err);
       });
   }
 
   //авторизация пользователя
   function handleAuthorize({ email, password }) {
-    setIsLoading(true);
     api
       .authorize(email, password)
       .then((res) => {
@@ -97,12 +95,8 @@ function App() {
         }
       })
       .catch((err) => {
-        setIsSuccess(false);
         console.log(err);
       })
-      .finally(() => {
-        setIsLoading(false);
-      });
   }
 
   function handleCardDelete(card) {
@@ -112,7 +106,6 @@ function App() {
         setSavedMovies((state) => state.filter((item) => item._id !== card._id));
       })
       .catch((err) => {
-        setIsSuccess(false);
         console.log(err);
         handleUnauthorized(err);
       });
@@ -125,7 +118,6 @@ function App() {
         setSavedMovies([newMovie, ...savedMovies]);
       })
       .catch((err) => {
-        setIsSuccess(false);
         console.log(err);
         handleUnauthorized(err);
       });
@@ -135,6 +127,19 @@ function App() {
     if (err === 'Error: 401') {
       handleSignOut();
     }
+  }
+
+  function handleUpdateUser(newUserInfo) {
+    api
+      .setUserInfo(newUserInfo)
+      .then((data) => {
+        setCurrentUser(data);
+        setResponseSuccess('Данные успешно изменены')
+      })
+      .catch((err) => {
+        handleUnauthorized(err);
+        setResponseError('При обновлении профиля произошла ошибка.');
+      })
   }
 
   // Выход
@@ -154,12 +159,11 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/movies' element={<Movies onCardDelete={handleCardDelete} handleLikeClick={handleCardLike} savedMovies={savedMovies} />} />
-        <Route path='/saved-movies' element={<SavedMovies onCardDelete={handleCardDelete} handleLikeClick={handleCardLike} savedMovies={savedMovies} />} />
-        <Route path='/profile' element={<Profile />} />
-        <Route path="/signup" element={<Register onRegister={handleRegister} />} />
-        <Route path="/signin" element={<Login onLogin={handleAuthorize} />} />
-        <Route path='/edit' element={<Edit />} />
+        <Route path='/movies' element={<ProtectedRoute loggedIn={isLoggedIn} element={Movies} onCardDelete={handleCardDelete} handleLikeClick={handleCardLike} savedMovies={savedMovies} />} />
+        <Route path='/saved-movies' element={<ProtectedRoute loggedIn={isLoggedIn} element={SavedMovies} onCardDelete={handleCardDelete} handleLikeClick={handleCardLike} savedMovies={savedMovies} />} />
+        <Route path='/profile' element={<ProtectedRoute loggedIn={isLoggedIn} element={Profile} responseSuccess={responseSuccess} responseError={responseError} handleUpdateUser={handleUpdateUser} handleSignOut={handleSignOut} />} />
+        <Route path="/signup" element={!isLoggedIn ? <Register onRegister={handleRegister} /> : <Navigate to="/movies" />}/>
+        <Route path="/signin" element={ !isLoggedIn ? <Login onLogin={handleAuthorize} /> : <Navigate to="/movies" />} />
         <Route path='*' element={<NotFoundError />} />
       </Routes>
       <Footer />

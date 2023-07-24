@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard"
+import Preloader from '../Preloader/Preloader';
+import NotFound from '../NotFound/NotFound'
 
-function MoviesCardList({cardList, isSaved, savedMovies, onCardDelete, handleLikeClick}) {
+function MoviesCardList({cardList, isSaved, savedMovies, onCardDelete, handleLikeClick, preloader, notFound}) {
     const [shownMovies, setShownMovies] = useState(0);
 
     function shownCount() {
@@ -36,11 +38,13 @@ function MoviesCardList({cardList, isSaved, savedMovies, onCardDelete, handleLik
   }
 
   function getSavedMovieCard(savedMovies, card) {
-    return savedMovies.find((savedMovie) => savedMovie.movieId === card.id);
+    return savedMovies.find((savedMovies) => savedMovies.movieId === card.id);
   }
 
     return (
         <section className="movies-card-list">
+          {preloader && <Preloader />}
+          {!preloader && notFound && <NotFound />}
             <ul className="movies-card-list__wrapper">
                 {cardList.slice(0, shownMovies).map(card => (
                     <MoviesCard
