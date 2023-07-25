@@ -1,3 +1,5 @@
+import { SHORTS } from "./constants";
+
 export function durationConverter(duration) {
     const hours = Math.floor(duration / 60);
     const minutes = duration % 60;
@@ -5,7 +7,7 @@ export function durationConverter(duration) {
 }
 
 export function filterDuration(movies) {
-  return movies.filter((movie) => movie.duration < 41);
+  return movies.filter((movie) => movie.duration < SHORTS);
 }
 
 export function filterMovies(movies, query) {

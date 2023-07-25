@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import MoviesCard from "../MoviesCard/MoviesCard"
 import Preloader from '../Preloader/Preloader';
 import NotFound from '../NotFound/NotFound'
+import { SHOW_MORE_DESKTOP, SHOW_MORE_MOBILE } from "../../utils/constants";
 
 function MoviesCardList({cardList, isSaved, savedMovies, onCardDelete, handleLikeClick, preloader, notFound}) {
     const [shownMovies, setShownMovies] = useState(0);
@@ -30,10 +31,10 @@ function MoviesCardList({cardList, isSaved, savedMovies, onCardDelete, handleLik
   function showMore() {
     const display = window.innerWidth;
     if (display > 1023) {
-      setShownMovies(shownMovies + 3);
+      setShownMovies(shownMovies + SHOW_MORE_DESKTOP);
     }
     else if (display < 1023) {
-      setShownMovies(shownMovies + 2);
+      setShownMovies(shownMovies + SHOW_MORE_MOBILE);
     }
   }
 

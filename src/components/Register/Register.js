@@ -1,6 +1,7 @@
 import Form from "../Form/Form"
 import { useState } from "react";
 import useForm from "../../hooks/useForm";
+import { EMAIL_REGEX, USER_NAME_REGEX } from "../../utils/constants";
 
 function Register({onRegister}) {
 
@@ -40,6 +41,7 @@ function Register({onRegister}) {
                     required
                     minLength={2}
                     maxLength={40}
+                    pattern={USER_NAME_REGEX}
                     value={enteredValues.name || ''}
                     onChange={handleChange}
                     onBlur={handleFocus}
@@ -52,7 +54,7 @@ function Register({onRegister}) {
                     type="email"
                     name="email"
                     placeholder="Ваш e-mail"
-                    pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                    pattern={EMAIL_REGEX}
                     required
                     value={enteredValues.email || ''}
                     onChange={handleChange}

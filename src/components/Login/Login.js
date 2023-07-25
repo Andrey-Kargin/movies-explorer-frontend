@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Form from "../Form/Form"
 import useForm from '../../hooks/useForm';
+import { EMAIL_REGEX } from "../../utils/constants";
 
 
 function Login({onLogin}) {
@@ -41,6 +42,7 @@ function Login({onLogin}) {
                     minLength="2"
                     maxLength="40"
                     required
+                    pattern={EMAIL_REGEX}
                     value={enteredValues.email || ''}
                     onChange={handleChange}
                     onBlur={handleFocus}
