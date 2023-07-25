@@ -31,7 +31,7 @@ function SearchForm({onSearchMovies, onFilter, isShortMovies}) {
     return (
         <section className="search-form">
             <form name="search" className="search-form__wrapper" onSubmit={handleSubmit}>
-                <input onChange={handleChange} name="search" className="search-form__input" type="text" placeholder="Фильм" />
+                <input onChange={handleChange} value={query} name="search" className="search-form__input" type="text" placeholder="Фильм" />
                 <button type="submit" className="search-form__btn"></button>
             </form>
             {emptyQuery && <span className="search-form__tip">Нужно ввести ключевое слово</span>}

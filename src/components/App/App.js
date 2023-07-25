@@ -145,11 +145,7 @@ function App() {
   // Выход
   const handleSignOut = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('movies');
-    localStorage.removeItem('movieSearch');
-    localStorage.removeItem('shortMovies');
-    localStorage.removeItem('allMovies');
+    localStorage.clear();
     navigate('/');
   };
 
