@@ -152,7 +152,7 @@ function App() {
 
   return (<CurrentUserContext.Provider value={currentUser}>
     <div className='page'>
-      <Header />
+      <Header loggedIn={isLoggedIn} />
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/movies' element={<ProtectedRoute loggedIn={isLoggedIn} element={Movies} onCardDelete={handleCardDelete} handleLikeClick={handleCardLike} savedMovies={savedMovies} />} />
