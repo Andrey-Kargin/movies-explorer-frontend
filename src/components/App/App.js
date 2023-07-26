@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import NotFoundError from '../NotFoundError/NotFoundError';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import { useState, useEffect } from 'react';
 
 import { useNavigate, useLocation, Navigate } from "react-router-dom";
@@ -25,6 +26,9 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [ responseError, setResponseError ] = useState(null);
   const [ responseSuccess, setResponseSuccess ] = useState(null);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [isInfoTooltipMessage, setIsInfoTooltipMessage] = useState("");
+  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
 
   const navigate = useNavigate();
 
@@ -48,6 +52,15 @@ function App() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function closePopup() {
+    setIsInfoTooltipOpen(false)
+  }
+
+  function handleSignup(message) {
+    setIsInfoTooltipMessage(message);
+    setIsInfoTooltipOpen(true);
+  }
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -77,9 +90,13 @@ function App() {
       .register(name, email, password)
       .then(() => {
         handleAuthorize({ email, password });
+        setIsRegistrationSuccess(true);
+        handleSignup("Вы успешно зарегистрировались!");
       })
       .catch((err) => {
         console.log(err);
+        setIsRegistrationSuccess(false);
+        handleSignup("Что-то пошло не так! Попробуйте ещё раз.");
       });
   }
 
@@ -96,6 +113,8 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        setIsRegistrationSuccess(false);
+        handleSignup("Вы ввели не верный email или пароль! Попробуйте еще раз.");
       })
   }
 
@@ -163,6 +182,12 @@ function App() {
         <Route path='*' element={<NotFoundError />} />
       </Routes>
       <Footer />
+      <InfoTooltip
+          isOpen={isInfoTooltipOpen}
+          message={isInfoTooltipMessage}
+          isSuccess={isRegistrationSuccess}
+          onClose={closePopup}
+        />
     </div>
     </CurrentUserContext.Provider>
   );
