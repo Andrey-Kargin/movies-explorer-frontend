@@ -3,7 +3,7 @@ import { Route, Routes, NavLink, useLocation } from "react-router-dom";
 import Logo from "../Logo/Logo";
 import Navigation from "../Navigation/Navigation";
 
-function Header() {
+function Header({loggedIn}) {
     const {pathname} = useLocation();
 
     return (
@@ -16,6 +16,7 @@ function Header() {
                     >
                     <Logo />
                     <Routes>
+                        {!loggedIn ?
                         <Route path="/" element={[
                             <ul className="header__menu-list">
                                 <li>
@@ -29,7 +30,8 @@ function Header() {
                                     </NavLink>                        
                                 </li>
                             </ul>
-                        ]} />
+                        ]} /> : <Route path="/" element={<Navigation />} />
+                    }
                         <Route path="/movies" element={<Navigation />} />
                         <Route path="/saved-movies" element={<Navigation />} />
                         <Route path="/profile" element={<Navigation />} />

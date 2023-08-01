@@ -1,22 +1,73 @@
-import { Link } from "react-router-dom"
+import React, { useContext, useEffect, useState } from 'react';
+import CurrentUserContext from '../../context/CurrentUserContext';
+import useForm from '../../hooks/useForm';
 
-function Profile({name}) {
+function Profile({ responseSuccess, responseError, handleSignOut, handleUpdateUser}) {
+    const currentUser = useContext(CurrentUserContext);
+
+    const { enteredValues, handleChange, isFormValid, resetForm } = useForm();
+    const [isLastValues, setIsLastValues] = useState(false);
+
+  
+    useEffect(() => {
+      if (currentUser) {
+        resetForm(currentUser);
+      }
+    }, [currentUser, resetForm]);
+  
+    function handleSubmit(e) {
+      e.preventDefault();
+      handleUpdateUser({
+        name: enteredValues.name,
+        email: enteredValues.email,
+      });
+
+    }
+  
+    useEffect(() => {
+      if (currentUser.name === enteredValues.name && currentUser.email === enteredValues.email) {
+        setIsLastValues(true);
+      } else {
+        setIsLastValues(false);
+      }
+  
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [enteredValues]);
+
     return (
-        <main className="profile">
+        <form onSubmit={handleSubmit} className="profile">
             <h2 className="profile__greet">
-                Привет, Андрей!
+                Привет, {currentUser.name}!
             </h2>
             <div className="profile__name">
                 <p className="profile__placeholder">Имя</p>
-                <p className="profile__text">Андрей</p>
+                <input
+                 name="name"
+                 className="profile__input"
+                 id="name-input"
+                 type="text"
+                 minLength="2"
+                 maxLength="40"
+                 required
+                 onChange={handleChange}
+                 value={enteredValues.name || ''} />
             </div>
             <div className="profile__email">
                 <p className="profile__placeholder">E-mail</p>
-                <p className="profile__text">pochta@yandex.ru</p>
+                <input
+                 name="email"
+                 className="profile__input"
+                 id="email-input"
+                 type="email"
+                 required
+                 onChange={handleChange}
+                 value={enteredValues.email || ''} />
             </div>
-            <Link to="/edit" className="profile__link">Редактировать</Link>
-            <Link to="/" className="profile__link profile__link_signout">Выйти из аккаунта</Link>
-        </main>
+            <span className={`profile__error ${responseSuccess ? 'profile__error_success' : responseError ? 'profile__error_unsuccess' : ''}`}>{(responseSuccess ?? '') || (responseError ?? '')}</span>
+            <button type="submit" disabled={!isFormValid ? true : false} to="/edit" className={
+              !isFormValid || isLastValues ? 'profile__link profile__link_inactive' : 'profile__link'}>Редактировать</button>
+            <button onClick={handleSignOut} className="profile__link profile__link_signout">Выйти из аккаунта</button>
+        </form>
     )
 }
 
